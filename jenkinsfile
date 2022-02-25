@@ -1,0 +1,11 @@
+node('jdk-mvn3.8.4') {
+    stage('git') {
+    git 'https://github.com/srilakshmi768/java11-examples.git'
+}
+  stage('build'){
+      sh '/usr/local/apache-maven-3.8.4/bin/mvn clean package'
+  }
+  stage('archive'){
+      archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+  }
+}
